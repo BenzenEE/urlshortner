@@ -1,0 +1,17 @@
+<html>
+
+<head>
+    <title>Url Shortner</title>
+</head>
+<body>
+    <form method="post" action="val">
+        {% csrf_token %}
+        <input type="text" name="url">
+        <input type="submit">
+    </form>
+    <h2>Link</h2>
+    {% if uid %}
+    <h4>localhost:8000/{{uid}}</h4>
+    {% endif %}
+</body>
+</html>

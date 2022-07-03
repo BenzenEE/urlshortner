@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jod Url Shortner</title>
+	<style type="text/css">
+		* {
+			margin:0px;
+			padding: 0px;
+			box-sizing: border-box;
+		}
+		body {
+			font-family:"Raleway",sans-serif;
+		}
+		.header {
+			width:100%;
+			height:50px;
+			line-height: 50px;
+			text-align: center;
+			background: #111;
+			color: #eee;
+			font-weight: 600;
+		}
+		.form {
+			padding:50px 20px;
+			background:#d2e9f7;
+		}
+		.form > div {
+			width:400px;
+			margin:10px auto;
+		}
+		.form .form-element input,
+		.form .form-element button {
+			width:100%;
+			padding: 10px;
+			margin-top: 10px;
+		}
+		.form .form-element button {
+			background: #111;
+			color:#eee;
+			outline: none;
+			border:none;
+			cursor: pointer;
+		}
+		.form .result {
+			text-align: center;
+			border-top:1px solid #eee;
+			margin-top:5px;
+		}
+		.list {
+			width:800px;
+			margin:40px auto;
+		}
+		.list h2 {
+			font-size: 40px;
+			margin-bottom: 20px;
+		}
+		.list table {
+			width:100%;
+			text-align: center;
+		}
+		.list table thead tr {
+			background: #555;
+			color:#eee;
+		}
+		.list table thead tr th,
+		.list table tbody tr td {
+			padding:5px;
+		}
+		.list table tbody tr:nth-child(odd){
+			background: #eee;
+		}
+	</style>
+</head>
+<body>
+	<div class="header">
+		Create Short URL
+	</div>
+	<div class="form">
+		<div class="form-element">
+            <form method="post" action="val">
+                {% csrf_token %}
+			<label for="longurl">Enter link</label>
+			<input type="text" name="url" placeholder="http://site.com">
+		</div>
+		<div class="form-element">
+			<button id="create-short-url">Create Short URL</button>
+            <!-- <input type="submit" value="Create Short URL"> -->
+		</div>
+            </form>
+		<div class="result">
+			<a href="#" id="short-url" target="_blank"></a>
+            {% if uid %}
+            <!-- <h4>localhost:8000/{{uid}}</h4> -->
+			<input type="text" id="text-1" value="localhost:8000/{{uid}}" />
+			<button onclick="copy('text-1')">Copy Text</button><br>
+            {% endif %}
+            <a href="">Home</a>
+		</div>
+	</div>
+	<!-- <div class="list">
+		<h2>Shorten links</h2>
+		<table id="list_urls">
+			<thead>
+				<tr>
+					<th>LongURL</th>
+					<th>ShortURL</th>
+					<th>Count</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div> -->
+	<script>
+		//Pass the id of the <input> element to be copied as a parameter to the copy()
+		let copy = (textId) => {
+			//Selects the text in the <input> elemet
+			document.getElementById(textId).select();
+			//Copies the selected text to clipboard
+			document.execCommand("copy");
+		};
+	</script>
+</body>
+</html>
